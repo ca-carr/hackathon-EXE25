@@ -7,8 +7,8 @@ from collections import defaultdict, deque
 import requests
 
 # === Configuration ===
-PORT = 55665
-RELAY_ID = "relay1"  # Set uniquely per relay
+PORT = 55665 # realy2 port 55666, relay3 port 55667
+RELAY_ID = "relay1"  # Set uniquely per relay (needs two more realys on different ports)
 RELAY_CONFIG_FILE = "relays.json"
 RATE_LIMIT = 10  # messages
 RATE_INTERVAL = 10  # seconds
