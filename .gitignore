@@ -175,7 +175,4 @@ cython_debug/
 
 # Logs
 relay_log.jsonl
-
-
-git config --global user.email "c.a.carr@exeter.ac.uk"
-git config --global user.name "C Carr"
+relays.json
