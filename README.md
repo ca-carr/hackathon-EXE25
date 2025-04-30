@@ -84,11 +84,15 @@ RELAY||{full_message_json_with_id}
 - No authentication yet — suitable for trusted/federated deployments only.
 - Future enhancements: TLS, signed messages, access control.
 
-## 📦 TODO / Roadmap
+## 📦 TODO
 
 - [ ] TLS support
 - [ ] Message expiration and pruning
 - [ ] REST or gRPC monitoring interface
 - [ ] Admin commands
+
+## TODO
+
+- Client functionality
 
 
