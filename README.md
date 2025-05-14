@@ -102,3 +102,6 @@ RELAY||{full_message_json_with_id}
 - Client functionality
 
 
+# IDEA
+
+Configure a consensus layer and use PQ crypto to sign and verify messages.
