@@ -25,7 +25,13 @@ This repository provides a Python-based peer-to-peer relay server that supports 
 - One external dependency:
   ```bash
   pip install requests
+  pip install cryptography
   ```
+
+## Setup
+- python3 -m venv venv
+- source venv/bin/activate
+
 
 ## ⚙️ Configuration
 
