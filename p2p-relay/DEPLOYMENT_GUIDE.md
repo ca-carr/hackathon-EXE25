@@ -41,6 +41,7 @@ CMD ["python", "main.py"] # Command to run when the container starts
      - Keep this key safe. DO NOT SHARE IT. You'll need it to access your instance
 
 4. **Configure the security group**
+   - Click to expand the security group settings
    - Create a new security group named `p2p-relay-sg`
    - Add the following inbound rules:
      - SSH (Port 22): Source = Your IP or 0.0.0.0/0 (anywhere)
@@ -54,48 +55,63 @@ CMD ["python", "main.py"] # Command to run when the container starts
 5. **Review and launch**
    - Click "Launch instance"
    - Wait for the instance to initialize (about 1-2 minutes)
+   - You can click on "Connect to instance" for instructions
 
 6. **Note your instance's public IP**
    - Find it in the "Instances" section of the EC2 dashboard
    - It will look something like: `12.34.56.78`
 
-## 3. Getting Your Code to the EC2 Instance
+## 3. Getting Your Code to your EC2 Instance
 
-### Option 1: Using SCP (Secure Copy)
+### Option 1: Connect via VS Code
 
-1. **Make your key file usable (Linux/Mac only)**
-   ```bash
-   chmod 400 /path/to/p2p-relay-keypair.pem
-   ```
+1. **Install the Remote - SSH extension**
+   - Open VS Code
+   - Go to Extensions
+   - Search for "Remote - SSH" and install it
+   - Look for the extension by Microsoft
 
-2. **Copy your project files to the instance**
-   ```bash
-   # For Linux/Mac:
-   scp -i /path/to/p2p-relay-keypair.pem -r ./p2p-relay ec2-user@YOUR_EC2_IP:~/
-   
-   # For Windows PowerShell:
-   scp -i C:\path\to\p2p-relay-keypair.pem -r .\p2p-relay ec2-user@YOUR_EC2_IP:~/
-   ```
+2. **Configure your SSH key**
+   - For Windows: 
+     - Make sure your .pem file is in a location with restrictive permissions
+     - You might need to convert the .pem to a .ppk file using PuTTYgen
+   - For macOS/Linux:
+     - Run `chmod 400 /path/to/p2p-relay-keypair.pem` to set proper permissions
 
-   Note: Replace `YOUR_EC2_IP` with your instance's public IP address.
-   For Ubuntu instances, use `ubuntu` instead of `ec2-user`.
+3. **Add your EC2 instance to VS Code**
+   - Press F1 or Ctrl+Shift+P (Cmd+Shift+P on Mac)
+   - Type "Remote-SSH: Add New SSH Host" and select it
+   - Enter: `ssh -i /path/to/p2p-relay-keypair.pem ubuntu@YOUR_EC2_IP`
+   - Select a config file to update (usually the first option)
 
-### Option 2: Using Git (if your code is in a repository)
+4. **Connect to your EC2 instance**
+   - Press F1 or Ctrl+Shift+P (Cmd+Shift+P on Mac)
+   - Select "Remote-SSH: Connect to Host"
+   - Choose your EC2 instance from the list
+   - If prompted about host authenticity, click "Continue"
+   - VS Code will connect to your EC2 instance
+   - When prompted for platform, select Linux
+
+5. **Open your terminal**
+   - Once connected, click "Open Folder"
+   - If you've uploaded files, navigate to where they are
+   - If not, you can create a new folder and clone your repository later
+
+### Option 2: Using SSH from Terminal
 
 1. **Connect to your instance**
    ```bash
    # For Linux/Mac:
-   ssh -i /path/to/p2p-relay-keypair.pem ec2-user@YOUR_EC2_IP
+   ssh -i /path/to/p2p-relay-keypair.pem ubuntu@YOUR_EC2_IP
    
    # For Windows PowerShell:
-   ssh -i C:\path\to\p2p-relay-keypair.pem ec2-user@YOUR_EC2_IP
+   ssh -i C:\path\to\p2p-relay-keypair.pem ubuntu@YOUR_EC2_IP
    ```
+
+### Installing Git
 
 2. **Install Git (if not already installed)**
    ```bash
-   # On Amazon Linux
-   sudo yum install -y git
-   
    # On Ubuntu
    sudo apt update
    sudo apt install -y git
@@ -103,9 +119,10 @@ CMD ["python", "main.py"] # Command to run when the container starts
 
 3. **Clone your repository**
    ```bash
-   git clone https://your-repository-url.git
-   cd your-repository-name/p2p-relay
+   git clone https://github.com/ca-carr/hackathon-EXE25.git
+   cd hackathon-EXE25/p2p-relay
    ```
+   - You can open the folder in VSCode too
 
 ## 4. Setting Up Docker on EC2
 
