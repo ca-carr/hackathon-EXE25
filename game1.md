@@ -87,70 +87,72 @@ Before the game begins, only half the group is allowed to make attacker actions.
 
 ## Network Team Goals
 
-The first goal of the Network Team is to deliver all transaction.
+The first goal of the Network Team is to **deliver all transaction.**
 
 In addition, the attacker members are aiming to achieve a couple of goals:
 
 - Get the Recorder Team(s) to accept a double-spend
 - Get the Recorder Team(s) to accept a forgery
 - Make it so the ledger between the different recorder teams does not match
--  
+- Disrupt the system in any other way.
 
-
-
----
 
 # Verifiers and Recorders
 
 This group forms the consensus and agreement layer of the blockchain.
 
 ### Responsibilities
-- Verify each transaction
+- Verify each transaction aganist rules you decided
 - Accept or Reject transactions
+- Update balances
 - Append a transaction to your ledger
-    - When a new transaction is appended, roll the dice, on a 6 you have made a block
+- When a new transaction is appended, roll the dice, on a 6 you have made a block
     - Underscore transactions and share the block with the other groups
     - They must copy your ledger as it is and discard their own (though they may keep any transactions that they have not seen or have not been duplicated.)
-
+- Flag suspicious transactions
 
 
 ## Recorder Team Goals
-
 - Create more blocks that the other recorder teams.
 - Detect and flag any tampered or invalid transactions.
 
 
-
-
-
 # Game End and Win Conditions
-The game ends after 20 minutes.
+- You have 10 minutes to decide on your blockchain system.
+- The game ends after 20 minutes.
+- Then there is a reconciliation system.
 
 
-Winning Criteria
+## Winning Criteria
 
-Attackers **Super Win** Condition:
+### Network **Super Win** Condition:
 - All blocks / overwhelming created contain tampered or invalid transactions created by the attackers **and** the following win condition applies
 
-Attackers **Win** condition:
+### Network **Win** condition:
 - All transactions are delivered to all Recorder Teams on the network
 - A forged transaction is included
 - Cause inconsistency between recorded ledgers
 - Caused invalid or double payment
 
-
-Recorders **Super Win** Condition: 
-- More blocks created than other teams and
+### Recorders **Super Win** Condition: 
+- More blocks created than other teams.
 - No block contains tampered or invalid transactions created by the attackers.
 
-- Senders **Win** if:
+### Senders **Win** if:
 - They send 100+ coins to the opposing team (or more)
 - All transactions are accepted into the final blockchain.
 - Each sender’s name appears at least once in accepted transactions.
 
 
 
+---
 
+# Debrief Questions
+1. What made consensus difficult?
+2. How did you detect fraudulent transactions?
+3. What role did the block creation (mining) play?
+4. How would digital signatures improve this system?
+5. What happens when ledgers disagree?
 
 
 
