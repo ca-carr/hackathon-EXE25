@@ -1,21 +1,34 @@
-# The Offline Blockchain
+# Game 1, The Offline Blockchain
+
+## Game Overview
+This game simulates a blockchain network without computers, to get to the fundamental concepts through thinking about the actual interactions.
+
+## Setup
 
 We will split into 5 groups of:
-
-- 3 verifiers and recorders
-- 1 network and attackers
-- 2 senders
+- 3 Verifier Groups (including Recorders)
+- 1 Network Group (inluding Attackers)
+- 2 Sender Groups
 
 ## Materials needed
-- Pen
+- Pen(s)
 - Paper
 - A 6 sided [dice](https://www.random.org/dice/?num=1)
+- Timer 
 
+# Initial Setup
+- Decide on your groups, who will be Sender group, who will be the Verifier group and the Network group.
+- Each Sender group starts with 100 coins, assigned somehow (you decide)
+- Create initial account balances on a "genesis block" (an initial state)
+- All Verifier groups need to be aware of this state somehow (you decide)
+- **Crucial** before the game begins, all groups together decide on how the blockchain system will work
 
 # Senders
 The senders send transactions to the network.
-- Write transactions on peices of paper, fold them and pass them to members of the network group.
+- Write transactions on peices of paper, fold them and pass them to members of the Network group. 
+- You can decide on the transaction format, below is two examples to get you started.
 ```js
+# example_1
 id:  ...
 to:  ...
 from:  ...
@@ -23,14 +36,26 @@ amount:  ...
 data:  ...
 verification_information: ...
 ```
+```js
+# example_2
+transaction #: ___
+from: ___ (account)
+to: ___ (account)
+amount: ___ coins
+timestamp: ___
+nonce: ___ (random number)
+signature: ___ (unique mark)
+```
+
+
 - Senders can send a maximum of 10 coins per transaction
 - They must also record all that you send
-- Sender groups start with 100 coins each
+- Sender groups start with 100 coins each, as per setup
 - Sender groups will decide what initial accounts have any coins
 
 
 ## Sender Constraints
-They can only communicate verbally with their own group and the Network group.
+They can only communicate verbally with their own group and the Network group. They cannot speak with the Verificaction groups.
 
 
 ## Senders Goals
@@ -39,30 +64,38 @@ The senders goals are quite straight forward.
 - Each group must send over 100 coins in total to the other sender group.
 - Each group must also include the names of their group members in different transactions, so that they are recorded as e.g. `name: M. Mifty, group: Sender-1` 
 
-# Network Team and Attackers
+# Network and Attackers
 
-The network takes the transactions from the both senders groups, reads them and shows them to each of the *verifiers and recorder* group. 
+- The Network group also contains the attackers. 
+- The network takes the transactions from the both senders groups, reads them and shows them to each of the Verifier group. 
 
 The attackers are allowed to take the transaction paper out of the room (or otherwise hide it from view). In addition the attackers can:
 
 1. write on the transaction paper
 2. copy the transactions
-3. create their own transactions
+3. create their own transactions (forgery)
 4. delay transactions by up to two minutes
 5. reorder transactions
 
 ## Network Team Constraints
 
-Before the game begins, only half the group is allowed to make attacker actions. The members that are not attackers may leave the room, but may not manipulate the transactions in the ways  suggested above. 
+Before the game begins, only half the group is allowed to make attacker actions. The members that are not attackers may leave the room, but may not manipulate the transactions in the ways the attackers can. 
 > You can swap at half time if you like. 
 
-You must elect a recorder to record all the manu
+- You must ensure you do not tell any other group who is an attacker and who is not. In addition, the Network group must act together.
+- You must elect a recorder to record all the transactions that you see, and all of the attacker manipulated transactions.
 
 ## Network Team Goals
 
-The Network Team must deliver all transactions. In addition, they are aiming to achieve a couple of goals:
+The first goal of the Network Team is to deliver all transaction.
 
-- Get the Recorder Team to accept  
+In addition, the attacker members are aiming to achieve a couple of goals:
+
+- Get the Recorder Team(s) to accept a double-spend
+- Get the Recorder Team(s) to accept a forgery
+- Make it so the ledger between the different recorder teams does not match
+-  
+
 
 
 ---
