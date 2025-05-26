@@ -103,9 +103,6 @@ CMD ["python", "main.py"] # Command to run when the container starts
    ```bash
    # For Linux/Mac:
    ssh -i /path/to/p2p-relay-keypair.pem ubuntu@YOUR_EC2_IP
-   
-   # For Windows PowerShell:
-   ssh -i C:\path\to\p2p-relay-keypair.pem ubuntu@YOUR_EC2_IP
    ```
 
 ### Installing Git
