@@ -1,7 +1,7 @@
 [
     {
       "id": "relay1",
-      "ip": "35.177.203.48",
+      "ip": "35.177.203.48", 
       "port": 55665
     },
     {
@@ -15,3 +15,5 @@
       "port": 55667
     }
   ]
+
+  ### you need to delete the ip, find your ip, and change the port number

@@ -138,7 +138,7 @@ def client_handler(conn, addr):
 def main():
     load_relay_peers()
     public_ip = get_public_ip()
-    print(f"[*] Relay Server {RELAY_ID} listening on 0.0.0.0:{PORT} (Public IP: {public_ip})")
+    print(f"[*] Relay Server {RELAY_ID} listening on {public_ip}:{PORT} (with Public IP: {public_ip})")
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(('0.0.0.0', PORT))
     server.listen(50)
