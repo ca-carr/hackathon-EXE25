@@ -1,5 +1,6 @@
 from secrets import compare_digest
 from hashlib import sha3_256
+import time
 
 from pqcrypto.sign.sphincs_shake_256s_simple import generate_keypair, sign, verify
 
