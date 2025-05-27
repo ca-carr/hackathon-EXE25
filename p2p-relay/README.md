@@ -2,7 +2,7 @@
 
 This repository provides a Python-based peer-to-peer relay server that supports distributed messaging, message deduplication, client broadcasting, and relay-to-relay synchronization.
 
-## 🚀 Features
+## Features
 
 - TCP-based message relay for P2P clients
 - Unique message ID assignment (SHA-256)
@@ -13,13 +13,13 @@ This repository provides a Python-based peer-to-peer relay server that supports 
 - Client acknowledgment with `msg_id`
 - Clean modular structure and fully cross-platform
 
-## 📁 Files
+## Files
 
-- `relay_server.py`: Main server script
+- `main.py`: Main server script
 - `relays.json`: Config file listing known peer relays
 - `relay_log.jsonl`: Log file of all accepted messages (appended only)
 
-## 🧪 Requirements
+## Requirements
 
 - Python 3.12+
 - One external dependency:
@@ -29,14 +29,16 @@ This repository provides a Python-based peer-to-peer relay server that supports 
   ```
 
 ## Setup
+```
 - python3 -m venv venv
 - source venv/bin/activate
+```
 
+## Configuration
 
-## ⚙️ Configuration
+### Change `relays.json.example` to `relays.json`
 
-### `relays.json`
-List all relays in the network:
+then list all relays in the network:
 
 ```json
 [
@@ -48,15 +50,15 @@ List all relays in the network:
 
 Ensure that each relay sets its own ID via `RELAY_ID` inside `relay_server.py`.
 
-## ▶️ Running
+## ▶Running
 
 ```bash
-python relay_server.py
+python3 main.py
 ```
 
 Logs will show the server's public IP and relay port.
 
-## 📤 Message Protocol
+## Message Protocol
 
 ### From Client
 ```
@@ -75,19 +77,12 @@ RELAY||{full_message_json_with_id}
 
 ## 📡 Behavior
 
-1. When a client sends a message:
-   - It is assigned a `msg_id`.
-   - It is stored locally.
-   - It is broadcast to other clients and relays.
-
-2. When a relay receives a message:
-   - If `msg_id` is known: skip.
-   - Else: broadcast to peers + clients, store locally.
+Starts a
 
 ## 🔐 Security Notes
 
 - IP addresses are tracked for rate limiting.
-- No authentication yet — suitable for trusted/federated deployments only.
+- No authentication, you can add this in.
 - Future enhancements: TLS, signed messages, access control.
 
 ## 📦 TODO
