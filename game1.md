@@ -120,10 +120,12 @@ This group forms the consensus and agreement layer of the blockchain.
 # Game End and Win Conditions
 - You have 10 minutes to decide on your blockchain system.
 - The game ends after 20 minutes.
-- Then there is a reconciliation system.
+- Then there is a reconciliation system where we count the blocks created, and the number of attacker transactions than were included.
 
 
 ## Winning Criteria
+
+
 
 ### Network **Super Win** Condition:
 - All blocks / overwhelming created contain tampered or invalid transactions created by the attackers **and** the following win condition applies
@@ -138,11 +140,14 @@ This group forms the consensus and agreement layer of the blockchain.
 - More blocks created than other teams.
 - No block contains tampered or invalid transactions created by the attackers.
 
+### Recorders **Win** Condition:
+- Created at least 2 blocks.
+- The number of attacker transactions in your blocks is fewer than other recorders.
+
 ### Senders **Win** if:
 - They send 100+ coins to the opposing team (or more)
 - All transactions are accepted into the final blockchain.
 - Each sender’s name appears at least once in accepted transactions.
-
 
 
 ---
