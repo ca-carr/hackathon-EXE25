@@ -86,79 +86,9 @@ print("Signature verification failed as expected!")
 - The verification confirms the message came from Alice and hasn't been tampered with
 - Trying to verify a signature for a different message fails, as expected
 
-## Performance Comparison: Classical vs Post-Quantum
-
-Now let's measure and compare the performance of classical cryptography versus post-quantum cryptography.
-
-### Setup for Performance Testing
-
-First, add these imports to your code:
-
-```python
-import time
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
-from cryptography.hazmat.primitives.serialization import Encoding, PrivateFormat, NoEncryption
-```
-
-### Classical RSA Implementation
-
-Add this code to compare with RSA:
-
-```python
-def time_classical_crypto():
-    """Measure RSA key generation, signing, and verification times"""
-    
-    # === KEY GENERATION ===
-    start_time = time.time()
-    private_key = rsa.generate_private_key(
-        public_exponent=65537,
-        key_size=2048,
-    )
-    public_key = private_key.public_key()
-    keygen_time = time.time() - start_time
-    
-    # === SIGNING ===
-    message = b"Hello world"
-    start_time = time.time()
-    signature = private_key.sign(
-        message,
-        padding.PSS(
-            mgf=padding.MGF1(hashes.SHA256()),
-            salt_length=padding.PSS.MAX_LENGTH
-        ),
-        hashes.SHA256()
-    )
-    signing_time = time.time() - start_time
-    
-    # === VERIFICATION ===
-    start_time = time.time()
-    try:
-        public_key.verify(
-            signature,
-            message,
-            padding.PSS(
-                mgf=padding.MGF1(hashes.SHA256()),
-                salt_length=padding.PSS.MAX_LENGTH
-            ),
-            hashes.SHA256()
-        )
-        verification_success = True
-    except:
-        verification_success = False
-    verification_time = time.time() - start_time
-    
-    return {
-        'keygen_time': keygen_time,
-        'signing_time': signing_time,
-        'verification_time': verification_time,
-        'verification_success': verification_success
-    }
-```
-
 ### Post-Quantum SPHINCS+ Implementation
 
-Add this code to measure SPHINCS+ performance:
+We can add this code to measure SPHINCS+ performance:
 
 ```python
 def time_postquantum_crypto():
@@ -190,77 +120,11 @@ def time_postquantum_crypto():
 
 ### Performance Comparison
 
-Add this code to run the comparison:
+Work on your own:
+- Find and implement a classical signature scheme in python. 
+- Perform the timing mechanism as above, and compare the times of classical to pq systems
 
-```python
-def compare_performance():
-    """Compare classical RSA vs post-quantum SPHINCS+ performance"""
-    
-    print("🔐 Cryptographic Performance Comparison")
-    print("=" * 50)
-    
-    # Test classical cryptography
-    print("Testing Classical RSA (2048-bit)...")
-    classical_results = time_classical_crypto()
-    
-    # Test post-quantum cryptography
-    print("Testing Post-Quantum SPHINCS+...")
-    pq_results = time_postquantum_crypto()
-    
-    # Display results
-    print("\n📊 RESULTS:")
-    print("-" * 30)
-    print(f"{'Operation':<15} {'RSA (ms)':<12} {'SPHINCS+ (ms)':<15} {'Ratio':<10}")
-    print("-" * 60)
-    
-    operations = ['keygen_time', 'signing_time', 'verification_time']
-    operation_names = ['Key Generation', 'Signing', 'Verification']
-    
-    for op, name in zip(operations, operation_names):
-        rsa_ms = classical_results[op] * 1000
-        sphincs_ms = pq_results[op] * 1000
-        ratio = sphincs_ms / rsa_ms if rsa_ms > 0 else float('inf')
-        
-        print(f"{name:<15} {rsa_ms:<12.2f} {sphincs_ms:<15.2f} {ratio:<10.1f}x")
-    
-    print("-" * 60)
-    print(f"RSA Verification: {'✓' if classical_results['verification_success'] else '✗'}")
-    print(f"SPHINCS+ Verification: {'✓' if pq_results['verification_success'] else '✗'}")
 
-# Run the comparison
-if __name__ == "__main__":
-    compare_performance()
-```
-
-## Key Size Comparison
-
-Add this code to compare key and signature sizes:
-
-```python
-def compare_sizes():
-    """Compare key and signature sizes between RSA and SPHINCS+"""
-    
-    print("\n📏 SIZE COMPARISON:")
-    print("-" * 40)
-    
-    # RSA sizes
-    rsa_private = rsa.generate_private_key(public_exponent=65537, key_size=2048)
-    rsa_public = rsa_private.public_key()
-    rsa_signature = rsa_private.sign(b"test", padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.MAX_LENGTH), hashes.SHA256())
-    
-    # SPHINCS+ sizes
-    sphincs_public, sphincs_private = generate_keypair()
-    sphincs_signature = sign(sphincs_private, b"test")
-    
-    print(f"{'Component':<20} {'RSA (bytes)':<15} {'SPHINCS+ (bytes)':<18}")
-    print("-" * 55)
-    print(f"{'Public Key':<20} {len(rsa_public.public_bytes(Encoding.DER, rsa.PublicFormat.SubjectPublicKeyInfo)):<15} {len(sphincs_public):<18}")
-    print(f"{'Private Key':<20} {len(rsa_private.private_bytes(Encoding.DER, PrivateFormat.PKCS8, NoEncryption())):<15} {len(sphincs_private):<18}")
-    print(f"{'Signature':<20} {len(rsa_signature):<15} {len(sphincs_signature):<18}")
-
-# Add this to your main function
-compare_sizes()
-```
 
 ## Questions to Consider
 
@@ -272,30 +136,5 @@ compare_sizes()
 
 4. **Blockchain Implications**: How might these performance differences affect blockchain transaction throughput?
 
-## Complete Example
 
-Here's how your complete `pq_performance.py` file should look:
-
-```python
-# Add all the imports and functions above, then:
-
-def main():
-    print("🚀 Post-Quantum Cryptography Demo")
-    print("=" * 40)
-    
-    # Original SPHINCS+ demo
-    public_key, secret_key = generate_keypair()
-    signature = sign(secret_key, b"Hello world")
-    print(f"✓ SPHINCS+ signature verification: {verify(public_key, b'Hello world', signature)}")
-    
-    # Performance comparison
-    compare_performance()
-    
-    # Size comparison
-    compare_sizes()
-
-if __name__ == "__main__":
-    main()
-```
-
-This exercise will help you understand the practical implications of post-quantum cryptography in terms of both security and performance!
+This exercise will help you understand the practical implications of post-quantum cryptography in terms of both security and performance.
